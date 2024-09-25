@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   
   // API route for search and filter
   router.get('/search', async (req, res) => {
-    const  category  = req.query;
+    const  category  = req.query.category;
     const  searchQuery = req.query.searchQuery;
     console.log(searchQuery);
   
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     }
   
     if (category) {
-      query.category = category;
+      query.category = {$regex:category, $options: 'i' };
     }
   
     try {
